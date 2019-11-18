@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  margin-top: 10%;
+  align-items: center;
+  justify-content: center;
+}
+.part-1 {
+  flex: 1;
+}
+img {
+  width: 30%;
+  margin: auto;
+  display: block;
+}
+.part-2 {
+  flex: 1;
+}
+
+a,
+a:hover,
+a:visited {
+  color: inherit;
+}
