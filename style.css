@@ -1,13 +1,21 @@
 img {
   width: 70%;
   margin: auto;
-  display: block;
 }
 @media (min-width: 768px) {
   img {
     width: 30%;
     margin: auto;
-    display: block;
+  }
+
+  h3 {
+    font-style: bold;
+  }
+  .container {
+    position: relative;
+    text-align: center;
+    margin-top: 2rem;
+    zoom: 125%;
   }
 }
 
