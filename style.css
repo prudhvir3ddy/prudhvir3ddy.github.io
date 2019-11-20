@@ -1,21 +1,27 @@
-.container {
-  display: flex;
-  margin-top: 10%;
-  align-items: center;
-  justify-content: center;
-}
-.part-1 {
-  flex: 1;
-}
 img {
-  width: 30%;
+  width: 70%;
   margin: auto;
   display: block;
 }
-.part-2 {
-  flex: 1;
+@media (min-width: 768px) {
+  img {
+    width: 30%;
+    margin: auto;
+    display: block;
+  }
 }
 
+.container {
+  position: relative;
+  text-align: center;
+  margin-top: 2rem;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 a,
 a:hover,
 a:visited {
