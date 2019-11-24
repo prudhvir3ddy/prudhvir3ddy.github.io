@@ -2,7 +2,7 @@ var TxtType = function(el, toRotate, period) {
   this.toRotate = toRotate;
   this.el = el;
   this.loopNum = 0;
-  this.period = parseInt(period, 2) || 1000;
+  this.period = parseInt(period, 2) || 500;
   this.txt = "";
   this.tick();
   this.isDeleting = false;
