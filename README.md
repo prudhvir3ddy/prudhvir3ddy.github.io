@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+most parts of this repo is inspired by developer saadpasta and this project https://github.com/saadpasta/developerFolio
+
 ## Available Scripts
 
 In the project directory, you can run:
