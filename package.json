@@ -1,8 +1,8 @@
 {
-  "name": "prudhvir3ddy.github.io",
+  "name": "prudhvireddy",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://prudhvireddy.me",
+  "homepage": "/prudhvireddy/",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
     "@testing-library/jest-dom": "^4.2.4",

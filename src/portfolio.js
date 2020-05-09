@@ -104,7 +104,7 @@ To know how to get github key look at readme.md */
 
 const openSource = {
   githubConvertedToken:
-    "YzEyNWNiYjRhMTQ5YWZlOTQyYTViNTBkZDJjNmMyM2RlZmIzODg4Zg==",
+    "MmNjNDkzZDFkMDUxNmIzODQ1M2Y2YmM2MTJjMDdlMDRjOGQ4YjZkYQ==",
   githubUserName: "prudhvir3ddy",
   showGithubProfile: "true", // Set true or false to show Contact profile using Github, defaults to false
 };
