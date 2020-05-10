@@ -20,14 +20,13 @@ jobs:
       - name: Add Secret
         env:
           TOKEN_FOR_GITHUB_PRUDHVI_PROJECT: ${{ secrets.TOKEN_FOR_GITHUB_PRUDHVI_PROJECT }}
-        run: echo ""
+        run: echo $TOKEN_FOR_GITHUB_PRUDHVI_PROJECT
       - name: Set Github Name
         run: git config --global user.name "prudhvir3ddy" && git config --global user.email "prudhvireddy.m01@gmail.com"
       - name: Deploy to GH Pages
         run: |
           git config --global user.email "prudhvireddy.m01@gmail.com"
           git config --global user.name "prudhvir3ddy"
-          echo $TOKEN_FOR_GITHUB_PRUDHVI_PROJECT
           git remote set-url --add origin $TOKEN_FOR_GITHUB_PRUDHVI_PROJECT
           npm run deploy
       - name: Updating Domain
