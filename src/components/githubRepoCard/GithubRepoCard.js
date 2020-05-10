@@ -19,12 +19,11 @@ export default function GithubRepoCard({ repo }) {
           <div className="repo-name-div">
             <svg
               aria-hidden="true"
-              className="octicon"
+              className="octicon repo-svg"
               height="16"
               role="img"
               viewBox="0 0 12 16"
               width="12"
-              className="repo-svg"
             >
               <path
                 fill-rule="evenodd"
@@ -46,13 +45,12 @@ export default function GithubRepoCard({ repo }) {
               <span>
                 <svg
                   aria-hidden="true"
-                  className="octicon"
+                  className="octicon repo-star-svg"
                   height="16"
                   role="img"
                   viewBox="0 0 10 16"
                   width="10"
                   fill="rgb(106, 115, 125)"
-                  className="repo-star-svg"
                 >
                   <path
                     fill-rule="evenodd"
@@ -64,13 +62,12 @@ export default function GithubRepoCard({ repo }) {
               <span>
                 <svg
                   aria-hidden="true"
-                  className="octicon"
+                  className="octicon repo-star-svg"
                   height="16"
                   role="img"
                   viewBox="0 0 14 16"
                   width="14"
                   fill="rgb(106, 115, 125)"
-                  className="repo-star-svg"
                 >
                   <path
                     fill-rule="evenodd"

@@ -8,7 +8,7 @@ export default function Header() {
     <Fade top duration={1000} distance="20px">
       <div>
         <header className="header">
-          <a href="" className="logo">
+          <a href="/" className="logo">
             <span className="logo-icon">
               <img src={people} alt="logo" />
             </span>
@@ -23,7 +23,11 @@ export default function Header() {
               <a href="#opensource">Open Source</a>
             </li>
             <li>
-              <a href="https://medium.com/@prudhvir3ddy" target="_blank">
+              <a
+                href="https://medium.com/@prudhvir3ddy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Blogs
               </a>
             </li>
