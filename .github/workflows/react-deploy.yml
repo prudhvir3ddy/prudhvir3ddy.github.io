@@ -20,6 +20,7 @@ jobs:
       - name: Add Secret
         env:
           TOKEN_FOR_GITHUB_PRUDHVI_PROJECT: ${{ secrets.TOKEN_FOR_GITHUB_PRUDHVI_PROJECT }}
+        run: echo ""
       - name: Set Github Name
         run: git config --global user.name "prudhvir3ddy" && git config --global user.email "prudhvireddy.m01@gmail.com"
       - name: Deploy to GH Pages
