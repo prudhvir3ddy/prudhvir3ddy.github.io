@@ -20,6 +20,9 @@ jobs:
       - name: Set Github Name
         run: git config --global user.name "prudhvir3ddy" && git config --global user.email "prudhvireddy.m01@gmail.com"
       - name: Deploy to GH Pages
-        run: npm run deploy
+        run: |
+          git config --global user.email "prudhvireddy.m01@gmail.com"
+          git config --global user.name "prudhvir3ddy"
+          git remote set-url origin https://8398641dfc51972e7a1c13cfdb05e8c776b9584e@github.com/prudhvir3ddy/prudhvireddy.git
       - name: Updating Domain
         run: echo "Update domain"
