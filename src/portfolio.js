@@ -3,9 +3,7 @@ import emoji from "react-easy-emoji";
 const greeting = {
   /* Your Summary And Greeting Section */
   title: emoji("I'm Prudhvi Reddy"),
-  // subTitle: emoji(
-  //   "A passionate Full Stack Software Developer 🚀 having an experience of building Web 🕸️ and Mobile 📱 applications."
-  // ),
+
   subTitle: emoji(
     "I Figure out things, Solve some problems and I can read errors correctly. I enjoy getting wired in! 💸"
   ),
@@ -23,6 +21,7 @@ const socialMediaLinks = {
   linkedin: "https://www.linkedin.com/in/prudhvir3ddy/",
   gmail: "prudhvireddy.m01@gmail.com",
   instagram: "https://www.instagram.com/prudhvir3ddy",
+  youtube: "https://www.youtube.com/channel/UC-VnpasahhnVnNOhyQ1Y5JQ",
 };
 
 // Your Skills Section

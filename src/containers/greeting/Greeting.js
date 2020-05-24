@@ -13,10 +13,7 @@ export default function Greeting() {
         <div className="greeting-main">
           <div className="greeting-text-div">
             <div>
-              <h1 className="greeting-text">
-                {" "}
-                {greeting.title} <span>{"🧔🏻"}</span>
-              </h1>
+              <h1 className="greeting-text"> {greeting.title}</h1>
               <p className="greeting-text-p subTitle">{greeting.subTitle}</p>
               <p className="greeting-text-p experience">
                 {greeting.experience}

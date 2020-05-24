@@ -59,6 +59,9 @@
   background-color: #1da1f2;
 }
 
+.youtube i {
+  background-color: #ea4335;
+}
 /*Hover Transition*/
 .twitter i:hover,
 .google i:hover,
