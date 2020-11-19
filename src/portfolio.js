@@ -10,8 +10,7 @@ const greeting = {
   experience: emoji(
     "A Software Developer 🚀 having an experience of building Web 🕸️ and Mobile 📱 applications."
   ),
-  resumeLink:
-    "https://drive.google.com/open?id=14yExQtylLSNgmNXVPD111rhlrWN4l8TyAkXyxkhCJgo",
+  resumeLink: "https://prudhvireddy.js.org/prudhvi_android.pdf",
 };
 
 // Your Social Media Link
