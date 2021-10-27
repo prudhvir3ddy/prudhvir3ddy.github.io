@@ -13,7 +13,7 @@ export default function Projects() {
 
   useEffect(() => {
     getRepoData();
-  },[getRepoData]);
+  });
 
   function getRepoData() {
     const client = new ApolloClient({
