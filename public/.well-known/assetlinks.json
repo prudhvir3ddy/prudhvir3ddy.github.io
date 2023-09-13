@@ -2,8 +2,8 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.example.deeplinking",
+    "package_name": "com.example.githubsignin",
     "sha256_cert_fingerprints":
-    ["58:B5:0F:20:A6:10:E0:E6:1B:53:C5:95:6F:F7:5B:88:D8:06:FC:79:D4:86:3A:B0:92:44:11:F2:F1:7B:59:EB"]
+    ["9C:44:E2:C0:27:2B:9E:07:BC:73:49:5F:F1:63:FB:FD:A5:93:E5:C2:6E:01:C0:5B:7F:4C:B5:BA:05:09:30:5A"]
   }
 }]
