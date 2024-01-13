@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prudhvi Reddy</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <center>
     <h1> Hi 👋 I'm Prudhvi Reddy</h1>
 
     <h2> 💼 Work experience: </h2>
@@ -21,6 +21,13 @@
 
     Book a session on <a href="https://topmate.io/prudhvir3ddy">Topmate</a>
 
-</center>
+    <button onclick="darkMode()">🌛</button>
+
+<script>
+    function darkMode() {
+       var element = document.body;
+       element.classList.toggle("dark-mode");
+    }
+    </script>
 </body>
 </html>
