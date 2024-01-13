@@ -1,9 +1,0 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.example.githubsignin",
-    "sha256_cert_fingerprints":
-    ["9C:44:E2:C0:27:2B:9E:07:BC:73:49:5F:F1:63:FB:FD:A5:93:E5:C2:6E:01:C0:5B:7F:4C:B5:BA:05:09:30:5A"]
-  }
-}]
