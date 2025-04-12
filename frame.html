@@ -355,53 +355,146 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 20px 15px 100px;
+                padding: 15px 10px 100px;
             }
 
             h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
+                margin-bottom: 5px;
             }
 
             .subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+
+            .main-content {
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            .left-section {
+                max-width: 100%;
+                padding: 0;
             }
 
             .drop-zone {
-                height: 200px;
+                height: 180px;
+                margin-bottom: 15px;
+            }
+
+            .drop-zone-icon {
+                font-size: 48px;
+                margin-bottom: 15px;
+            }
+
+            .drop-zone-text {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .drop-zone-subtext {
+                font-size: 13px;
             }
 
             .frame-options {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-                gap: 10px;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                margin-bottom: 20px;
             }
 
-            .button-group {
-                flex-direction: column;
-                gap: 15px;
+            .frame-option {
+                aspect-ratio: 1;
             }
 
-            .random-btn {
-                margin-left: 0;
+            .custom-color-section {
+                margin-top: 15px;
+                padding: 12px 10px;
+            }
+
+            .color-picker-container {
+                gap: 8px;
+            }
+
+            .color-picker {
+                width: 40px;
+                height: 40px;
+            }
+
+            .right-section {
+                position: static;
+                margin-bottom: 80px;
+                padding: 0;
+            }
+
+            .preview-section {
+                margin: 0 auto;
+                max-width: 100%;
+            }
+
+            .frame-preview {
+                max-width: 100%;
             }
 
             #imagePreview {
-                max-width: 100vw;
+                max-width: 100%;
                 height: auto;
             }
 
             .download-btn {
-                margin: 30px auto;
-                padding: 16px 35px;
-                font-size: 18px;
+                margin: 25px auto;
+                padding: 14px 30px;
+                font-size: 16px;
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 20px;
+            }
+
+            .random-btn {
+                width: 90%;
+                max-width: 300px;
+                margin: 0 auto;
+                padding: 14px 30px;
+                font-size: 16px;
             }
 
             .footer {
-                padding: 15px;
-                font-size: 13px;
+                padding: 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 12px 8px 90px;
             }
 
-            .right-section {
-                margin-bottom: 80px;
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .frame-options {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .drop-zone {
+                height: 160px;
+            }
+
+            .download-btn,
+            .random-btn {
+                width: 100%;
+                max-width: none;
             }
         }
 
