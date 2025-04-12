@@ -177,11 +177,30 @@
             margin: 0 15px;
         }
         
+        .frame-options-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .frame-options-container::after {
+            content: '';
+            position: absolute;
+            right: calc(200px + 15px);
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #e0e0e0;
+        }
+
         .frame-options {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            grid-template-columns: repeat(4, 80px);
+            grid-template-rows: repeat(2, 80px);
             gap: 15px;
-            margin-bottom: 30px;
             animation: fadeIn 0.8s ease-out 0.4s both;
         }
         
@@ -291,47 +310,51 @@
         }
         
         .random-btn {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
-            color: white;
-            padding: 14px 30px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-            letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .random-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .random-btn:hover::before {
-            opacity: 1;
+            background: #FF8A8A;
+            box-shadow: 0 4px 15px rgba(255, 138, 138, 0.2);
+            border-radius: 16px;
+            padding: 12px 20px;
+            min-width: 140px;
         }
 
         .random-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 138, 138, 0.3);
         }
 
         .button-group {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 20px;
-            margin-top: 30px;
+            margin: 20px 0;
+        }
+
+        .button-group button {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            color: white;
+            text-align: center;
+            padding: 16px 40px;
+            border-radius: 24px;
+            min-width: 180px;
+        }
+
+        .download-btn {
+            background: #8A3FFC;
+            box-shadow: 0 4px 15px rgba(138, 63, 252, 0.2);
+            border-radius: 24px;
+            padding: 16px 40px;
+            min-width: 180px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 63, 252, 0.3);
         }
 
         @media (max-width: 1200px) {
@@ -379,49 +402,6 @@
                 padding: 0;
             }
 
-            .drop-zone {
-                height: 180px;
-                margin-bottom: 15px;
-            }
-
-            .drop-zone-icon {
-                font-size: 48px;
-                margin-bottom: 15px;
-            }
-
-            .drop-zone-text {
-                font-size: 18px;
-                margin-bottom: 8px;
-            }
-
-            .drop-zone-subtext {
-                font-size: 13px;
-            }
-
-            .frame-options {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
-                margin-bottom: 20px;
-            }
-
-            .frame-option {
-                aspect-ratio: 1;
-            }
-
-            .custom-color-section {
-                margin-top: 15px;
-                padding: 12px 10px;
-            }
-
-            .color-picker-container {
-                gap: 8px;
-            }
-
-            .color-picker {
-                width: 40px;
-                height: 40px;
-            }
-
             .right-section {
                 position: static;
                 margin-bottom: 80px;
@@ -442,26 +422,60 @@
                 height: auto;
             }
 
-            .download-btn {
-                margin: 25px auto;
-                padding: 14px 30px;
-                font-size: 16px;
-                width: 90%;
+            .drop-zone {
+                height: 180px;
+                margin-bottom: 15px;
+            }
+
+            .drop-zone-icon {
+                font-size: 48px;
+                margin-bottom: 15px;
+            }
+
+            .drop-zone-text {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .drop-zone-subtext {
+                font-size: 13px;
+            }
+
+            .frame-options-container {
+                flex-direction: column;
+                gap: 30px;
+                align-items: center;
+            }
+
+            .frame-options-container::after {
+                display: none;
+            }
+
+            .frame-options {
+                grid-template-columns: repeat(4, 60px);
+                grid-template-rows: repeat(2, 60px);
+                gap: 12px;
+            }
+
+            .custom-color-section {
+                width: 100%;
                 max-width: 300px;
+                padding: 0;
+            }
+
+            .color-picker {
+                width: 50px;
+                height: 50px;
             }
 
             .button-group {
-                flex-direction: column;
-                gap: 12px;
-                margin-top: 20px;
+                gap: 15px;
             }
 
-            .random-btn {
-                width: 90%;
-                max-width: 300px;
-                margin: 0 auto;
-                padding: 14px 30px;
-                font-size: 16px;
+            .button-group button {
+                padding: 14px 32px;
+                font-size: 15px;
+                min-width: 160px;
             }
 
             .footer {
@@ -484,17 +498,27 @@
             }
 
             .frame-options {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(4, 50px);
+                grid-template-rows: repeat(2, 50px);
+                gap: 10px;
             }
 
             .drop-zone {
                 height: 160px;
             }
 
-            .download-btn,
-            .random-btn {
+            .button-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .button-group button {
                 width: 100%;
-                max-width: none;
+            }
+
+            .color-picker {
+                width: 45px;
+                height: 45px;
             }
         }
 
@@ -717,21 +741,21 @@
         }
 
         .custom-color-section {
-            margin-top: 20px;
-            text-align: center;
-            padding: 15px;
-            border-top: 1px solid #eee;
+            padding: 0 20px;
+            width: 200px;
         }
 
         .custom-color-label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color: #666;
             font-size: 0.9rem;
+            text-align: center;
         }
 
         .color-picker-container {
             display: flex;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
             gap: 15px;
@@ -741,16 +765,17 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background-color: transparent;
             border: none;
             cursor: pointer;
+            border-radius: 12px;
             transition: transform 0.2s ease;
         }
 
         .color-picker:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .color-picker::-webkit-color-swatch-wrapper {
@@ -759,13 +784,13 @@
 
         .color-picker::-webkit-color-swatch {
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .color-picker::-moz-color-swatch {
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
@@ -787,45 +812,7 @@
                         <div class="drop-zone-text">Drag & Drop your image here</div>
                         <div class="drop-zone-subtext">or click to browse files</div>
                     </div>
-
-                    <div class="button-group">
-                        <button class="random-btn" onclick="selectRandomFrame()">Random Frame</button>
-                    </div>
                     <input type="file" id="fileInput" accept="image/*" style="display: none;">
-                </div>
-                
-                <div class="frame-options">
-                    <div class="frame-option" data-frame="none" onclick="selectFrame(this)">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2VlZSIvPjwvc3ZnPg==" alt="No Frame">
-                    </div>
-                    <div class="frame-option" data-frame="red" onclick="selectFrame(this)">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmNmI2YiIvPjwvc3ZnPg==" alt="Red Frame">
-                    </div>
-                    <div class="frame-option" data-frame="blue" onclick="selectFrame(this)">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzRmYWNmZSIvPjwvc3ZnPg==" alt="Blue Frame">
-                    </div>
-                    <div class="frame-option" data-frame="green" onclick="selectFrame(this)">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzQzZTk3YiIvPjwvc3ZnPg==" alt="Green Frame">
-                    </div>
-                    <div class="frame-option" data-frame="yellow" onclick="selectFrame(this)">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmZDcwMCIvPjwvc3ZnPg==" alt="Yellow Frame">
-                    </div>
-                    <div class="frame-option" data-frame="cyan" onclick="selectFrame(this)">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzAwZTVmZiIvPjwvc3ZnPg==" alt="Cyan Frame">
-                    </div>
-                    <div class="frame-option" data-frame="lime" onclick="selectFrame(this)">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2E4ZTA0OCIvPjwvc3ZnPg==" alt="Lime Frame">
-                    </div>
-                    <div class="frame-option" data-frame="coral" onclick="selectFrame(this)">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmN2U2NyIvPjwvc3ZnPg==" alt="Coral Frame">
-                    </div>
-                </div>
-                <div class="custom-color-section">
-                    <span class="custom-color-label">Create your own frame color</span>
-                    <div class="color-picker-container">
-                        <input type="color" id="colorPicker1" class="color-picker" value="#ff6b6b" oninput="updateCustomColor()">
-                        <input type="color" id="colorPicker2" class="color-picker" value="#ff8e8e" oninput="updateCustomColor()">
-                    </div>
                 </div>
             </div>
 
@@ -835,9 +822,48 @@
                         <img id="imagePreview" alt="Preview">
                     </div>
                 </div>
-                <button class="download-btn" id="downloadBtn" onclick="downloadImage()">
-                    Download Image
-                </button>
+
+                <div class="button-group">
+                    <button class="random-btn" onclick="selectRandomFrame()">Random Frame</button>
+                    <button class="download-btn" id="downloadBtn" onclick="downloadImage()">Download Image</button>
+                </div>
+
+                <div class="frame-options-container">
+                    <div class="frame-options">
+                        <div class="frame-option" data-frame="none" onclick="selectFrame(this)">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2VlZSIvPjwvc3ZnPg==" alt="No Frame">
+                        </div>
+                        <div class="frame-option" data-frame="red" onclick="selectFrame(this)">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmNmI2YiIvPjwvc3ZnPg==" alt="Red Frame">
+                        </div>
+                        <div class="frame-option" data-frame="blue" onclick="selectFrame(this)">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzRmYWNmZSIvPjwvc3ZnPg==" alt="Blue Frame">
+                        </div>
+                        <div class="frame-option" data-frame="green" onclick="selectFrame(this)">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzQzZTk3YiIvPjwvc3ZnPg==" alt="Green Frame">
+                        </div>
+                        <div class="frame-option" data-frame="yellow" onclick="selectFrame(this)">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmZDcwMCIvPjwvc3ZnPg==" alt="Yellow Frame">
+                        </div>
+                        <div class="frame-option" data-frame="cyan" onclick="selectFrame(this)">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzAwZTVmZiIvPjwvc3ZnPg==" alt="Cyan Frame">
+                        </div>
+                        <div class="frame-option" data-frame="lime" onclick="selectFrame(this)">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2E4ZTA0OCIvPjwvc3ZnPg==" alt="Lime Frame">
+                        </div>
+                        <div class="frame-option" data-frame="coral" onclick="selectFrame(this)">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZmN2U2NyIvPjwvc3ZnPg==" alt="Coral Frame">
+                        </div>
+                    </div>
+
+                    <div class="custom-color-section">
+                        <span class="custom-color-label">Create your own frame color</span>
+                        <div class="color-picker-container">
+                            <input type="color" id="colorPicker1" class="color-picker" value="#ff6b6b" oninput="updateCustomColor()">
+                            <input type="color" id="colorPicker2" class="color-picker" value="#ff8e8e" oninput="updateCustomColor()">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
