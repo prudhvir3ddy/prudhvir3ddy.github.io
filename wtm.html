@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website to Mobile App Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(88, 86, 214, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #5856d6, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .header p {
+            color: #a0aec0;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 8px;
+            padding: 1px;
+            background: linear-gradient(45deg, rgba(88, 86, 214, 0.5), rgba(255, 107, 107, 0.5));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #a0aec0;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #5856d6;
+            box-shadow: 0 0 0 2px rgba(88, 86, 214, 0.2);
+        }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(45deg, #5856d6, #ff6b6b);
+            border: none;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        button:hover::before {
+            transform: translateX(0);
+        }
+        
+        .loader {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .spinning-circle {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: #5856d6;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .status {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 12px;
+            border-radius: 6px;
+        }
+        
+        .success {
+            background-color: rgba(47, 133, 90, 0.1);
+            color: #48bb78;
+            border: 1px solid rgba(72, 187, 120, 0.2);
+        }
+        
+        .error {
+            background-color: rgba(197, 48, 48, 0.1);
+            color: #f56565;
+            border: 1px solid rgba(245, 101, 101, 0.2);
+        }
+
+        .mobile-frame {
+            position: absolute;
+            width: 300px;
+            height: 600px;
+            border: 12px solid #1a1a1a;
+            border-radius: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -350px;
+            background-color: #0a0a0a;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            display: none;
+            overflow: hidden;
+        }
+
+        .mobile-frame::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 20px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+        }
+
+        .mobile-screen {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            color: #1a1a1a;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-screen.active {
+            opacity: 1;
+        }
+
+        .mobile-screen .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #5856d6, #ff6b6b);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .mobile-screen .progress-bar {
+            width: 80%;
+            height: 4px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .mobile-screen .progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #5856d6, #ff6b6b);
+            transition: width 0.3s ease;
+        }
+
+        @media (min-width: 1200px) {
+            .mobile-frame {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Convert Website to Mobile App APK</h1>
+        <p>Transform your website into a native Android application with just a few clicks</p>
+    </div>
+
+    <div class="container">
+        <form id="convertForm">
+            <div class="form-group">
+                <label for="url">Website URL</label>
+                <input 
+                    type="url" 
+                    id="url" 
+                    name="url" 
+                    placeholder="https://example.com" 
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="packageName">App Package Name</label>
+                <input 
+                    type="text" 
+                    id="packageName" 
+                    name="packageName" 
+                    placeholder="com.example.app" 
+                    pattern="[a-z][a-z0-9_]*(\.[a-z0-9_]+)+" 
+                    title="Package name should be in format: com.example.app"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="secret">Secret</label>
+                <input 
+                    type="password" 
+                    id="secret" 
+                    name="secret" 
+                    placeholder="Enter secret key" 
+                    required
+                >
+            </div>
+            
+            <button type="submit">Convert to APK</button>
+        </form>
+        
+        <div class="loader" id="loader">
+            <div class="spinning-circle"></div>
+            <p>Processing your request...</p>
+        </div>
+        
+        <div class="status" id="status"></div>
+    </div>
+
+    <div class="mobile-frame">
+        <div class="mobile-screen" id="mobileScreen">
+            <div class="icon">📱</div>
+            <h3>Converting Website</h3>
+            <p id="conversionStatus">Initializing conversion...</p>
+            <div class="progress-bar">
+                <div class="progress" id="conversionProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const mobileScreen = document.getElementById('mobileScreen');
+        const conversionStatus = document.getElementById('conversionStatus');
+        const conversionProgress = document.getElementById('conversionProgress');
+        
+        function updateMobileScreen(status, progress) {
+            mobileScreen.classList.add('active');
+            conversionStatus.textContent = status;
+            conversionProgress.style.width = `${progress}%`;
+        }
+
+        document.getElementById('convertForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const url = document.getElementById('url').value;
+            const package_name = document.getElementById('packageName').value;
+            const secret = document.getElementById('secret').value;
+            
+            // Show loader
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('status').style.display = 'none';
+            mobileScreen.classList.add('active');
+            
+            // Simulate conversion progress
+            const steps = [
+                { status: 'Analyzing website...', progress: 20 },
+                { status: 'Generating app structure...', progress: 40 },
+                { status: 'Configuring native features...', progress: 60 },
+                { status: 'Building APK...', progress: 80 },
+                { status: 'Finalizing...', progress: 100 }
+            ];
+            
+            let currentStep = 0;
+            const progressInterval = setInterval(() => {
+                if (currentStep < steps.length) {
+                    updateMobileScreen(steps[currentStep].status, steps[currentStep].progress);
+                    currentStep++;
+                } else {
+                    clearInterval(progressInterval);
+                }
+            }, 2000);
+            
+            try {
+                const response = await fetch('https://wtm-46fs.onrender.com/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url,
+                        package_name,
+                        secret
+                    })
+                });
+                
+                const result = await response.json();
+                
+                // Hide loader
+                document.getElementById('loader').style.display = 'none';
+                clearInterval(progressInterval);
+                
+                // Show status
+                const statusElement = document.getElementById('status');
+                statusElement.style.display = 'block';
+                
+                if (response.ok) {
+                    statusElement.className = 'status success';
+                    statusElement.textContent = result.message || 'Your APK has been generated successfully.';
+                    updateMobileScreen('Conversion complete!', 100);
+                } else {
+                    statusElement.className = 'status error';
+                    statusElement.textContent = result.message || 'Something went wrong. Please try again.';
+                    updateMobileScreen('Conversion failed', 0);
+                }
+            } catch (error) {
+                // Hide loader
+                document.getElementById('loader').style.display = 'none';
+                clearInterval(progressInterval);
+                
+                // Show error
+                const statusElement = document.getElementById('status');
+                statusElement.style.display = 'block';
+                statusElement.className = 'status error';
+                statusElement.textContent = error.message || 'Connection failed. Please check your internet and try again.';
+                updateMobileScreen('Connection error', 0);
+            }
+        });
+    </script>
+</body>
+</html>
