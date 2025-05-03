@@ -490,7 +490,7 @@
                 
                 if (response.ok) {
                     statusElement.className = 'status success';
-                    statusElement.textContent = 'Your APK has been generated successfully.';
+                    statusElement.textContent = 'Your APK job triggered successfully here - https://github.com/prudhvir3ddy/Web2Mob/actions';
                 } else {
                     const result = await response.json();
                     statusElement.className = 'status error';
