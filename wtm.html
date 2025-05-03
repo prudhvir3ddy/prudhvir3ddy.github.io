@@ -277,8 +277,6 @@
                     })
                 });
                 
-                const result = await response.json();
-                
                 // Hide loader
                 document.getElementById('loader').style.display = 'none';
                 
@@ -288,8 +286,9 @@
                 
                 if (response.ok) {
                     statusElement.className = 'status success';
-                    statusElement.textContent = result.message || 'Your APK has been generated successfully.';
+                    statusElement.textContent = 'Your APK has been generated successfully.';
                 } else {
+                    const result = await response.json();
                     statusElement.className = 'status error';
                     statusElement.textContent = result.message || 'Something went wrong. Please try again.';
                 }
