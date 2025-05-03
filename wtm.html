@@ -196,6 +196,171 @@
             color: #f56565;
             border: 1px solid rgba(245, 101, 101, 0.2);
         }
+
+        .visualization {
+            margin-top: 60px;
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visualization::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 8px;
+            padding: 1px;
+            background: linear-gradient(45deg, rgba(88, 86, 214, 0.5), rgba(255, 107, 107, 0.5));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .process-flow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px 0;
+            gap: 20px;
+        }
+
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            min-width: 100px;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #5856d6, #ff6b6b);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-bottom: 8px;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        .step-label {
+            color: #a0aec0;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            max-width: 100px;
+            word-wrap: break-word;
+        }
+
+        .connecting-line {
+            display: none;
+        }
+
+        .floating-dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #5856d6, #ff6b6b);
+            border-radius: 50%;
+            animation: float 4s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes flow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { transform: translateY(-20px) translateX(10px); opacity: 1; }
+            100% { transform: translateY(-40px) translateX(20px); opacity: 0; }
+        }
+
+        .visualization-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            background: linear-gradient(45deg, #5856d6, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @media (min-width: 768px) {
+            .visualization {
+                padding: 40px;
+            }
+
+            .process-flow {
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                gap: 0;
+            }
+
+            .process-step {
+                min-width: auto;
+            }
+
+            .step-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .step-label {
+                font-size: 14px;
+                max-width: none;
+            }
+
+            .connecting-line {
+                display: block;
+                position: absolute;
+                top: 30px;
+                left: 15%;
+                right: 15%;
+                height: 2px;
+                background: linear-gradient(90deg, 
+                    transparent 0%, 
+                    rgba(88, 86, 214, 0.5) 20%, 
+                    rgba(255, 107, 107, 0.5) 80%, 
+                    transparent 100%
+                );
+                animation: flow 3s linear infinite;
+            }
+        }
     </style>
 </head>
 <body>
@@ -252,7 +417,46 @@
         <div class="status" id="status"></div>
     </div>
 
+    <div class="visualization">
+        <h3 class="visualization-title">How It Works</h3>
+        <div class="process-flow">
+            <div class="connecting-line"></div>
+            <div class="process-step">
+                <div class="step-icon">🌐</div>
+                <div class="step-label">Website</div>
+            </div>
+            <div class="process-step">
+                <div class="step-icon">🔄</div>
+                <div class="step-label">Conversion</div>
+            </div>
+            <div class="process-step">
+                <div class="step-icon">⚙️</div>
+                <div class="step-label">GitHub Actions</div>
+            </div>
+            <div class="process-step">
+                <div class="step-icon">📦</div>
+                <div class="step-label">APK Artifact</div>
+            </div>
+            <div class="process-step">
+                <div class="step-icon">📱</div>
+                <div class="step-label">Mobile App</div>
+            </div>
+        </div>
+        <div class="floating-dots" id="floatingDots"></div>
+    </div>
+
     <script>
+        // Create floating dots
+        const floatingDots = document.getElementById('floatingDots');
+        for (let i = 0; i < 20; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = `${Math.random() * 100}%`;
+            dot.style.top = `${Math.random() * 100}%`;
+            dot.style.animationDelay = `${Math.random() * 4}s`;
+            floatingDots.appendChild(dot);
+        }
+
         document.getElementById('convertForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
