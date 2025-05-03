@@ -22,7 +22,6 @@
             align-items: center;
             padding: 40px 20px;
             position: relative;
-            overflow: hidden;
         }
 
         body::before {
@@ -197,91 +196,6 @@
             color: #f56565;
             border: 1px solid rgba(245, 101, 101, 0.2);
         }
-
-        .mobile-frame {
-            position: absolute;
-            width: 300px;
-            height: 600px;
-            border: 12px solid #1a1a1a;
-            border-radius: 40px;
-            top: 50%;
-            transform: translateY(-50%);
-            right: -350px;
-            background-color: #0a0a0a;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-            display: none;
-            overflow: hidden;
-        }
-
-        .mobile-frame::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 20px;
-            background-color: #1a1a1a;
-            border-radius: 10px;
-        }
-
-        .mobile-screen {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            text-align: center;
-            color: #1a1a1a;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .mobile-screen.active {
-            opacity: 1;
-        }
-
-        .mobile-screen .icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #5856d6, #ff6b6b);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-        }
-
-        .mobile-screen .progress-bar {
-            width: 80%;
-            height: 4px;
-            background-color: rgba(0, 0, 0, 0.1);
-            border-radius: 2px;
-            margin: 20px 0;
-            overflow: hidden;
-        }
-
-        .mobile-screen .progress {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(45deg, #5856d6, #ff6b6b);
-            transition: width 0.3s ease;
-        }
-
-        @media (min-width: 1200px) {
-            .mobile-frame {
-                display: block;
-            }
-        }
     </style>
 </head>
 <body>
@@ -338,28 +252,7 @@
         <div class="status" id="status"></div>
     </div>
 
-    <div class="mobile-frame">
-        <div class="mobile-screen" id="mobileScreen">
-            <div class="icon">📱</div>
-            <h3>Converting Website</h3>
-            <p id="conversionStatus">Initializing conversion...</p>
-            <div class="progress-bar">
-                <div class="progress" id="conversionProgress"></div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const mobileScreen = document.getElementById('mobileScreen');
-        const conversionStatus = document.getElementById('conversionStatus');
-        const conversionProgress = document.getElementById('conversionProgress');
-        
-        function updateMobileScreen(status, progress) {
-            mobileScreen.classList.add('active');
-            conversionStatus.textContent = status;
-            conversionProgress.style.width = `${progress}%`;
-        }
-
         document.getElementById('convertForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -370,26 +263,6 @@
             // Show loader
             document.getElementById('loader').style.display = 'block';
             document.getElementById('status').style.display = 'none';
-            mobileScreen.classList.add('active');
-            
-            // Simulate conversion progress
-            const steps = [
-                { status: 'Analyzing website...', progress: 20 },
-                { status: 'Generating app structure...', progress: 40 },
-                { status: 'Configuring native features...', progress: 60 },
-                { status: 'Building APK...', progress: 80 },
-                { status: 'Finalizing...', progress: 100 }
-            ];
-            
-            let currentStep = 0;
-            const progressInterval = setInterval(() => {
-                if (currentStep < steps.length) {
-                    updateMobileScreen(steps[currentStep].status, steps[currentStep].progress);
-                    currentStep++;
-                } else {
-                    clearInterval(progressInterval);
-                }
-            }, 2000);
             
             try {
                 const response = await fetch('https://wtm-46fs.onrender.com/generate', {
@@ -408,7 +281,6 @@
                 
                 // Hide loader
                 document.getElementById('loader').style.display = 'none';
-                clearInterval(progressInterval);
                 
                 // Show status
                 const statusElement = document.getElementById('status');
@@ -417,23 +289,19 @@
                 if (response.ok) {
                     statusElement.className = 'status success';
                     statusElement.textContent = result.message || 'Your APK has been generated successfully.';
-                    updateMobileScreen('Conversion complete!', 100);
                 } else {
                     statusElement.className = 'status error';
                     statusElement.textContent = result.message || 'Something went wrong. Please try again.';
-                    updateMobileScreen('Conversion failed', 0);
                 }
             } catch (error) {
                 // Hide loader
                 document.getElementById('loader').style.display = 'none';
-                clearInterval(progressInterval);
                 
                 // Show error
                 const statusElement = document.getElementById('status');
                 statusElement.style.display = 'block';
                 statusElement.className = 'status error';
                 statusElement.textContent = error.message || 'Connection failed. Please check your internet and try again.';
-                updateMobileScreen('Connection error', 0);
             }
         });
     </script>
