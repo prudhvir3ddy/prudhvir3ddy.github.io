@@ -60,18 +60,24 @@ th, td {
 }
 
 /* Dark mode styles for projects */
-body.dark-mode .project {
+[data-bs-theme="dark"] .project {
   background-color: #2d2d2d;
+  border: 1px solid #444;
 }
 
-body.dark-mode .project h3 {
+[data-bs-theme="dark"] .project h3,
+[data-bs-theme="dark"] .project h4 {
   color: #fff;
 }
 
-body.dark-mode .project p {
+[data-bs-theme="dark"] .project p {
   color: #ccc;
 }
 
-body.dark-mode .project a {
+[data-bs-theme="dark"] .project a {
   color: #4dabf7;
+}
+
+[data-bs-theme="dark"] .project:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
